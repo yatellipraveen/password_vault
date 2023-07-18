@@ -27,4 +27,30 @@ public class SiteDAOJpaImpl implements SiteDAO{
         //return the results
         return sites;
     }
+
+    @Override
+    public Site findById(int theId) {
+        //get site
+        Site theSite = entityManager.find(Site.class, theId);
+        //return site
+        return theSite;
+    }
+
+    @Override
+    public Site save(Site theSite) {
+        //save Site
+        Site dbSite = entityManager.merge(theSite);
+
+        //return dbSite
+        return dbSite;
+    }
+
+    @Override
+    public void deleteById(int theId) {
+        //find site by id
+        Site theSite = entityManager.find(Site.class, theId);
+
+        //remove site;
+        entityManager.remove(theSite);
+    }
 }
